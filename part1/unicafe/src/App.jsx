@@ -26,28 +26,46 @@ function App() {
         <button onClick={handleNeutral}>neutral</button>
         <button onClick={handleBad}>bad</button>
       </div>
-    <Statistics bad= {bad} good= {good} neutral= {neutral}/>
+      <Statistics bad={bad} good={good} neutral={neutral} />
     </>
   );
 }
 
-
-const Statistics = (props)=>{
-
-return (
-    <>
-  <div>
-        <h1>statistics</h1>
-      </div>
-      <div>
-        <p>good {props.good}</p>
-        <p>neutral {props.neutral}</p>
-        <p>bad {props.bad}</p>
-        <p>all {props.bad + props.neutral + props.good}</p>
-        <p>average {(props.good -props.bad)/(props.good + props.bad + props.neutral ) }</p>
-        <p>positive {(props.good * 100 )/(props.good + props.bad + props.neutral)}%</p>
-      </div>
-  </>
-)
-}
+const Statistics = (props) => {
+  if (props.bad + props.good + props.neutral > 0) {
+    return (
+      <>
+        <div>
+          <div>
+            <h1>statistics</h1>
+          </div>
+          <div>
+            <p>good {props.good}</p>
+            <p>neutral {props.neutral}</p>
+            <p>bad {props.bad}</p>
+            <p>all {props.bad + props.neutral + props.good}</p>
+            <p>
+              average{" "}
+              {(props.good - props.bad) /
+                (props.good + props.bad + props.neutral)}
+            </p>
+            <p>
+              positive{" "}
+              {(props.good * 100) / (props.good + props.bad + props.neutral)}%
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
+  else {
+    return (
+       <>
+      <p>No feedback given</p>
+      </>
+    )
+     
+    
+  }
+};
 export default App;
