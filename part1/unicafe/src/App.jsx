@@ -26,19 +26,28 @@ function App() {
         <button onClick={handleNeutral}>neutral</button>
         <button onClick={handleBad}>bad</button>
       </div>
-      <div>
-        <h1>statistics</h1>
-      </div>
-      <div>
-        <p>good {good}</p>
-        <p>neutral {neutral}</p>
-        <p>bad {bad}</p>
-        <p>all {bad + neutral + good}</p>
-        <p>average {(good -bad)/(good + bad + neutral ) }</p>
-        <p>positive {(good * 100 )/(good + bad + neutral)}%</p>
-      </div>
+    <Statistics bad= {bad} good= {good} neutral= {neutral}/>
     </>
   );
 }
 
+
+const Statistics = (props)=>{
+
+return (
+    <>
+  <div>
+        <h1>statistics</h1>
+      </div>
+      <div>
+        <p>good {props.good}</p>
+        <p>neutral {props.neutral}</p>
+        <p>bad {props.bad}</p>
+        <p>all {props.bad + props.neutral + props.good}</p>
+        <p>average {(props.good -props.bad)/(props.good + props.bad + props.neutral ) }</p>
+        <p>positive {(props.good * 100 )/(props.good + props.bad + props.neutral)}%</p>
+      </div>
+  </>
+)
+}
 export default App;
