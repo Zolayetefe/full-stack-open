@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const App = () => {
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+
   const anecdotes = [
     "If it hurts, do it more often.",
     "Adding manpower to a late software project makes it later!",
@@ -13,17 +15,29 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
 
-  const anecdoteHandler = ()=>{
-   setSelected(selected + 1 )
-  }
+  const anecdoteHandler = () => {
+    setSelected(selected + 1);
+  };
+
+  const handleVote = () => {
+    const copy = { ...votes };
+    copy[selected] += 1;
+    setVotes(copy);
+  };
 
   return (
     <>
       <div>{anecdotes[selected]}</div>
+        <div>
+        <p>has {votes[selected]} votes</p>
+      </div>
       <div>
-          <button onClick={anecdoteHandler}>
-            next anecdote
-          </button>
+        <button onClick={handleVote}> vote </button>
+      </div>
+    
+      <br />
+      <div>
+        <button onClick={anecdoteHandler}>next anecdote</button>
       </div>
     </>
   );
